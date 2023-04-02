@@ -55,18 +55,18 @@ export async function updateActivity(
     details,
     state,
     largeImageKey: 'logo',
-    largeImageText: `Ember Client ${remote.app.getVersion()}`,
+    largeImageText: `Solar Twerk ${remote.app.getVersion()}`,
     buttons: [
       {
-        label: '⬇️⠀Download Ember Client',
-        url: 'https://github.com/Ember-Client/Ember-client',
+        label: '⬇️⠀Download Solar Twerk',
+        url: 'https://github.com/qualk/Solar-Twerk',
       },
     ],
   };
 
   if (Math.random() > 0.98)
     activity.buttons.push({
-      label: '🧐⠀Not a Rickroll Source: Trust Me Bro',
+      label: 'Not a Rickroll (Source: Trust Me Bro)',
       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     });
 

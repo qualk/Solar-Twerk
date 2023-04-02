@@ -5,7 +5,7 @@
         <img
           src="https://s3.us-east-1.wasabisys.com/e-zimagehosting/17a2b375-7193-4f28-94c4-be10a3e7c1b4/qrki9zpx.png"
           id="title-image"
-          alt="Actual Ember Client Logo"
+          alt="Actual Solar Twerk Logo"
           class="logo-white"
           height="58"
           width="249"

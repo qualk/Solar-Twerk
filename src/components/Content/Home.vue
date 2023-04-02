@@ -148,7 +148,7 @@ export default {
     await axios
       .get(`${constants.API_URL}/launcher/blogPosts`)
       .then((response) => {
-        logger.info(`Fetched Ember Client Blog Posts`, response.data);
+        logger.info(`Fetched Solar Twerk Blog Posts`, response.data);
         this.posts = response.data;
       });
     await axios

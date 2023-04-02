@@ -297,7 +297,7 @@ export default {
       };
       console.log('Saving Settings', data);
       await writeFile(
-        join(constants.EMBERCLIENT_DIR, constants.ENGINE.CONFIG),
+        join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG),
         JSON.stringify(data),
         'utf-8'
       );
@@ -337,20 +337,20 @@ export default {
     updateActivity('In the launcher', 'Customizing the game');
     this.modules = JSON.parse(
       await readFile(
-        join(constants.EMBERCLIENT_DIR, constants.ENGINE.METADATA),
+        join(constants.SOLARTWERK_DIR, constants.ENGINE.METADATA),
         'utf-8'
       ).catch(
         async () =>
           await downloadAndSaveFile(
             constants.ENGINE.METADATA_URL,
-            join(constants.EMBERCLIENT_DIR, constants.ENGINE.METADATA),
+            join(constants.SOLARTWERK_DIR, constants.ENGINE.METADATA),
             'text',
             '',
             '',
             true
           ).then(() =>
             readFile(
-              join(constants.EMBERCLIENT_DIR, constants.ENGINE.METADATA),
+              join(constants.SOLARTWERK_DIR, constants.ENGINE.METADATA),
               'utf-8'
             )
           )
@@ -358,13 +358,13 @@ export default {
     ).modules;
     const example = JSON.parse(
       await readFile(
-        join(constants.EMBERCLIENT_DIR, constants.ENGINE.CONFIG_EXAMPLE),
+        join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG_EXAMPLE),
         'utf-8'
       ).catch(
         async () =>
           await downloadAndSaveFile(
             constants.ENGINE.CONFIG_EXAMPLE_URL,
-            join(constants.EMBERCLIENT_DIR, constants.ENGINE.CONFIG_EXAMPLE),
+            join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG_EXAMPLE),
             'text',
             '',
             '',
@@ -373,7 +373,7 @@ export default {
             .then(() =>
               readFile(
                 join(
-                  constants.EMBERCLIENT_DIR,
+                  constants.SOLARTWERK_DIR,
                   constants.ENGINE.CONFIG_EXAMPLE
                 ),
                 'utf-8'
@@ -384,12 +384,12 @@ export default {
     );
     const data = JSON.parse(
       await readFile(
-        join(constants.EMBERCLIENT_DIR, constants.ENGINE.CONFIG),
+        join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG),
         'utf-8'
       ).catch(
         async () =>
           await writeFile(
-            join(constants.EMBERCLIENT_DIR, constants.ENGINE.CONFIG),
+            join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG),
             '{}'
           )
             .then(() => ({}))

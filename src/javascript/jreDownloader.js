@@ -52,7 +52,7 @@ export async function downloadJre(_jre) {
     return false;
   }
 
-  const jresPath = join(constants.EMBERCLIENT_DIR, 'jres');
+  const jresPath = join(constants.SOLARTWERK_DIR, 'jres');
   const jrePath = join(jresPath, _jre.name);
 
   await mkdir(jresPath).catch(() => {
@@ -147,7 +147,7 @@ export async function downloadJre(_jre) {
  * Delete a downloaded JRE
  */
 export async function removeJre(jreName) {
-  await rm(join(constants.EMBERCLIENT_DIR, 'jres', jreName), {
+  await rm(join(constants.SOLARTWERK_DIR, 'jres', jreName), {
     recursive: true,
     force: true,
   });

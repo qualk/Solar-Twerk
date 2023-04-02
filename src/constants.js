@@ -4,7 +4,7 @@ import { join } from 'path';
 export default {
   links: {
     GH_DISCUSSIONS: 'https://github.com/orgs/Solar-Tweaks/discussions',
-    GITHUB: 'https://github.com/Ember-Client/',
+    GITHUB: 'https://github.com/qualk/Solar-Twerk/',
     GITBOOK: 'https://docs.solartweaks.com',
     YOUTUBE: 'https://www.youtube.com/channel/UCXRhlF3x02Sc8hgWnCMXnTQ',
     LUNARCLIENT: 'https://lunarclient.com/',
@@ -15,9 +15,9 @@ export default {
     WEBSITE: 'https://solartweaks.com',
   },
   API_URL: 'https://server.solartweaks.com/api',
-  LAUNCHER_URL: 'https://updater-f102ihz0h-ember-client.vercel.app/',
+  LAUNCHER_URL: 'TODO (VERCEL)',
   ENGINE: {
-    ENGINE: 'ember-engine.jar',
+    ENGINE: 'solar-engine.jar',
     CONFIG: 'config.json',
     CONFIG_EXAMPLE: 'config.example.json',
     METADATA: 'metadata.json',
@@ -33,7 +33,7 @@ export default {
     LAUNCH: '/launch',
   },
   DOTLUNARCLIENT: join(homedir(), '.lunarclient'),
-  EMBERCLIENT_DIR: join(homedir(), '.lunarclient', 'emberclient'),
+  SOLARTWERK_DIR: join(homedir(), '.lunarclient', 'solartwerk'),
   SENTRY:
     'https://bd3de1d6c87c403f8f23da0a91a82b1b@o4504573741039616.ingest.sentry.io/4504573745758208',
 

@@ -86,7 +86,7 @@ export default async function setupSettings() {
     await settings.set(
       'downloadedJres',
       (
-        await readdir(join(constants.EMBERCLIENT_DIR, 'jres'), {
+        await readdir(join(constants.SOLARTWERK_DIR, 'jres'), {
           withFileTypes: true,
         })
       )

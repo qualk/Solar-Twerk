@@ -3,7 +3,7 @@
     <Card
       icon="fa-solid fa-cogs"
       title="DEVELOPER SETTINGS"
-      subtitle="DO NOT MESS WITH ANYTHING HERE UNLESS YOU ARE EITHER A EMBER CLIENT ADMIN OR DEVELOPER"
+      subtitle="DO NOT MESS WITH ANYTHING HERE UNLESS YOU ARE EITHER A SOLAR TWERK ADMIN OR DEVELOPER"
       background="about"
       contentClass="debug-card"
     >

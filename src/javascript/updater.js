@@ -68,7 +68,7 @@ export async function checkForUpdates() {
 
     if (platform === 'win32') {
       const filename = `launcher-${release.data.index.stable.launcher}-update-temp.exe`;
-      const filePath = join(constants.EMBERCLIENT_DIR, filename);
+      const filePath = join(constants.SOLARTWERK_DIR, filename);
 
       await downloadAndSaveFile(
         `${constants.LAUNCHER_URL}${constants.UPDATERS.LAUNCHER.replace(

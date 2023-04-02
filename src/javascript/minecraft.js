@@ -457,7 +457,7 @@ export async function checkEngine() {
  * @returns {Promise<void>}
  */
 export async function checkEngineConfig() {
-  const configPath = join(constants.EMBERCLIENT_DIR, constants.ENGINE.CONFIG);
+  const configPath = join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG);
   await stat(configPath).catch(async () => {
     logger.info('Creating config file');
     await downloadAndSaveFile(
@@ -515,7 +515,7 @@ export async function getJavaArguments(
     )?.path || getDotMinecraftDirectory();
 
   const resolution = await settings.get('resolution');
-  const enginePath = join(constants.EMBERCLIENT_DIR, constants.ENGINE.ENGINE);
+  const enginePath = join(constants.SOLARTWERK_DIR, constants.ENGINE.ENGINE);
 
   // Make sure the engine exists, or else the game will crash (jvm init error)
   await stat(enginePath)

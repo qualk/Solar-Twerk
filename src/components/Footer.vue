@@ -1,13 +1,13 @@
 <template>
   <div id="footer-container">
-    <div id="ember-client-container">
+    <div id="solar-twerk-container">
       <img
         src="@/assets/logo-gray.svg"
         id="footer-image"
-        alt="Ember Client Logo"
+        alt="Solar Twerk Logo"
       />
-      <h4 id="emberclient-text" class="footer-text">
-        Ember Client • {{ version }} • {{ os }} •
+      <h4 id="solartwerk-text" class="footer-text">
+        Solar Twerk • {{ version }} • {{ os }} •
         {{ served ? 'Development (Served)' : 'Production' }}
       </h4>
     </div>
@@ -94,7 +94,7 @@ export default {
   z-index: 10;
 }
 
-#ember-client-container {
+#solar-twerk-container {
   display: flex;
 }
 
@@ -112,7 +112,7 @@ export default {
   font-size: 17px;
 }
 
-#emberclient-text {
+#client-text {
   margin-left: 10px;
   margin-top: auto;
   margin-bottom: auto;

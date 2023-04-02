@@ -3,7 +3,7 @@
     <Card
       icon="fa-solid fa-circle-info"
       title="LAUNCHER INFORMATION"
-      subtitle="LAUNCHER VERSION, LINKS, AND LEARN ABOUT EMBER CLIENT"
+      subtitle="LAUNCHER VERSION, LINKS, AND LEARN ABOUT SOLAR TWERK"
       background="about"
       id="about-card"
       contentClass="vertical-card-container"
@@ -19,7 +19,7 @@
           id="about-us-card-item"
         >
           <p id="about-us">
-            Ember Client is a modification tool for Lunar Client. By modifying
+            Solar Twerk is a modification tool for Lunar Client. By modifying
             the game's code when it gets loaded, we add a variety of features
             that enhance your Minecraft experience. Browse and configure our
             Modules to your own needs under the Engine tab, launch with a single
@@ -32,7 +32,7 @@
         </CardItem>
         <div id="little-cards">
           <CardItem
-            title="Ember Client"
+            title="Solar Twerk"
             icon="fa-solid fa-comments"
             subtitle="We are now using GitHub discussions to keep in touch with the community!"
             class="little-card"
@@ -51,7 +51,7 @@
             :subtitle="`Electron: v${aboutLauncherDescription.electron} • Node: v${aboutLauncherDescription.node} • Chrome: v${aboutLauncherDescription.chrome}`"
             class="little-card"
           >
-            <button @click="openEmberClientFolder()" class="button">
+            <button @click="openSolarTwerkFolder()" class="button">
               <i class="fa-solid fa-folder-open button-icon"></i>
               OPEN ST DIRECTORY
             </button>
@@ -92,7 +92,7 @@
     <Card
       icon="fa-solid fa-circle-info"
       title="CREDITS"
-      subtitle="LIST OF PEOPLE THAT HAVE HELPED MAKE EMBER CLIENT"
+      subtitle="LIST OF PEOPLE THAT HAVE HELPED MAKE SOLAR TWERK"
       background="about"
       id="about-card"
       contentClass="vertical-card-container"
@@ -196,7 +196,7 @@ export default {
           name: 'NotEvenJoking',
           link: 'https://github.com/770grappenmaker',
           avatar: 'https://avatars.githubusercontent.com/u/50543283',
-          reason: 'Main Engine Developer',
+          reason: 'Main Solar Engine Developer',
           aka: '770grappenmaker',
         },
         {
@@ -216,11 +216,7 @@ export default {
         {
           name: 'thororen',
           link: 'https://github.com/thororen',
-<<<<<<< HEAD
-          avatar: 'https://cdn.discordapp.com/attachments/1090297575321632870/1091807332884807911/images.png',
-=======
           avatar: 'https://i.imgur.com/maRzwz2.jpg',
->>>>>>> 0cb2f97e2bd57d557abbc48e3165b17b3909022b
           reason: 'Creator',
         },
       ],
@@ -243,6 +239,14 @@ export default {
           link: 'https://github.com/Waffles3438',
           avatar: 'https://avatars.githubusercontent.com/u/96705793',
           reason: 'Helped bug test',
+        },
+        {
+          name: 'qualk',
+          link: 'https://github.com/qualk',
+          avatar:
+            'https://cdn.discordapp.com/avatars/733480259810230342/25fb207dfc26829401a786cac8378c97.webp?size=80',
+          reason: 'solar twerk',
+          aka: '(TROPPUS ROF GNIP) klauq',
         },
       ],
       translators: [
@@ -283,24 +287,24 @@ export default {
       remote.shell.openExternal(url);
     },
     /**
-     * Opens the Ember Client folder
+     * Opens the Solar Twerk folder
      */
-    openEmberClientFolder() {
-      remote.shell.openPath(constants.EMBERCLIENT_DIR);
+    openSolarTwerkFolder() {
+      remote.shell.openPath(constants.SOLARTWERK_DIR);
     },
     /**
      * Download Logs and put them into a zip file
      */
     async downloadLogs() {
       return await new Promise((res, rej) =>
-        zipper.zip(join(constants.EMBERCLIENT_DIR, 'logs'), (err, zip) => {
+        zipper.zip(join(constants.SOLARTWERK_DIR, 'logs'), (err, zip) => {
           if (err) rej(err.stack);
           else
-            zip.save(join(constants.EMBERCLIENT_DIR, 'logs.zip'), (err) => {
+            zip.save(join(constants.SOLARTWERK_DIR, 'logs.zip'), (err) => {
               if (err) rej(err.stack);
               else {
                 remote.shell.showItemInFolder(
-                  constants.EMBERCLIENT_DIR + '/logs.zip'
+                  constants.SOLARTWERK_DIR + '/logs.zip'
                 );
                 res(zip);
               }

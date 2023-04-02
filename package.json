@@ -1,19 +1,21 @@
 {
-  "name": "emberclient",
-  "version": "4.6.9",
-  "author": "EmberClient",
-  "description": "EmberClient",
+  "name": "solar-twerk",
+  "version": "4.3.3",
+  "author": "qualk",
+  "description": "Solar Twerk is a tool for tweaking and customizing Lunar Client. Give yourself an upgrade in your gaming experience.",
   "contributors": [
     "RichardDorian",
     "770grappenmaker",
     "RadNotRed",
     "TBHGodPro",
-    "Naibuu"
+    "Naibuu",
+    "thororen1234",
+    "qualk"
   ],
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ember-Client/Ember-Client.git"
+    "url": "https://github.com/qualk/Solar-Twerk"
   },
   "scripts": {
     "lint": "vue-cli-service lint",

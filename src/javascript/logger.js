@@ -48,7 +48,7 @@ export default class Logger {
    */
   async writeLog(log) {
     await appendFile(
-      join(constants.EMBERCLIENT_DIR, 'logs', 'launcher-latest.log'),
+      join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
       `${log}\n`
     ).catch(async (reason) => {
       if (
@@ -58,7 +58,7 @@ export default class Logger {
       ) {
         await clearLogs();
         await appendFile(
-          join(constants.EMBERCLIENT_DIR, 'logs', 'launcher-latest.log'),
+          join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
           `${log}\n`
         );
       } else throw new Error(reason);
@@ -68,7 +68,7 @@ export default class Logger {
 
 export async function createMinecraftLogger(version) {
   const logFile = join(
-    constants.EMBERCLIENT_DIR,
+    constants.SOLARTWERK_DIR,
     'logs',
     `${version}-latest.log`
   );
@@ -85,24 +85,24 @@ export async function createMinecraftLogger(version) {
  * Clears the log file
  */
 export async function clearLogs() {
-  await stat(join(constants.EMBERCLIENT_DIR, 'logs')).catch(() =>
-    mkdir(join(constants.EMBERCLIENT_DIR, 'logs'), {
+  await stat(join(constants.SOLARTWERK_DIR, 'logs')).catch(() =>
+    mkdir(join(constants.SOLARTWERK_DIR, 'logs'), {
       recursive: true,
     })
   );
 
   const oldLog = await readFile(
-    join(constants.EMBERCLIENT_DIR, 'logs', 'launcher-latest.log'),
+    join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
     'utf-8'
   ).catch(() => '');
 
   await writeFile(
-    join(constants.EMBERCLIENT_DIR, 'logs', 'launcher-latest.log'),
+    join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
     ''
   );
 
   await writeFile(
-    join(constants.EMBERCLIENT_DIR, 'logs', 'launcher-old.log'),
+    join(constants.SOLARTWERK_DIR, 'logs', 'launcher-old.log'),
     oldLog,
     'utf-8'
   );

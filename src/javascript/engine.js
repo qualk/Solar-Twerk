@@ -13,16 +13,16 @@ const logger = new Logger('Engine');
  * @returns {Promise<void>}
  */
 export async function verifyEngine() {
-  const enginePath = join(constants.EMBERCLIENT_DIR, constants.ENGINE.ENGINE);
+  const enginePath = join(constants.SOLARTWERK_DIR, constants.ENGINE.ENGINE);
   const configExamplePath = join(
-    constants.EMBERCLIENT_DIR,
+    constants.SOLARTWERK_DIR,
     constants.ENGINE.CONFIG_EXAMPLE
   );
   const metadataPath = join(
-    constants.EMBERCLIENT_DIR,
+    constants.SOLARTWERK_DIR,
     constants.ENGINE.METADATA
   );
-  const configPath = join(constants.EMBERCLIENT_DIR, constants.ENGINE.CONFIG);
+  const configPath = join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG);
 
   logger.debug('Verifying Config Exists...');
   await stat(configPath).catch(

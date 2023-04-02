@@ -4,12 +4,12 @@ module.exports = {
       nodeIntegration: true,
       outputDir: 'dist',
       builderOptions: {
-        appId: 'com.emberclient.launcher',
-        productName: 'Ember Client',
+        appId: 'com.solartwerk.launcher',
+        productName: 'Solar Twerk',
         win: {
           target: 'nsis',
           icon: 'build/icons/win/icon.ico',
-          publisherName: 'Ember Client',
+          publisherName: 'qualk',
           verifyUpdateCodeSignature: true,
           requestedExecutionLevel: 'asInvoker',
         },
@@ -22,11 +22,11 @@ module.exports = {
         },
         linux: {
           target: 'AppImage',
-          maintainer: 'Ember Client',
-          vendor: 'Ember Client',
+          maintainer: 'qualk',
+          vendor: 'qualk',
           icon: 'build/icons/linux/1024x1024.png',
-          synopsis: 'Ember Client',
-          description: 'Ember Client',
+          synopsis: 'Solar Tweaks, but Twerk.',
+          description: 'Solar Twerk is a tool for tweaking and customizing Lunar Client. Give yourself an upgrade in your gaming experience.',
           category: 'Game',
         },
         mac: {

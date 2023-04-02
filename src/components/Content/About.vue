@@ -83,7 +83,7 @@
               }"
               @click="toggleSentry()"
             >
-              {{ SentryEnabled ? 'DISABLE' : 'ENABLE' }} LOGGING
+              {{ SentryEnabled ? "DISABLE" : "ENABLE" }} LOGGING
             </button>
           </CardItem>
         </div>
@@ -156,20 +156,20 @@
 </template>
 
 <script>
-import { remote } from 'electron';
-import process from 'process';
-import Card from '../Card/Card.vue';
-import CardItem from '../Card/CardItem.vue';
-import constants from '../../constants';
-import zipper from 'zip-local';
-import { join } from 'path';
-import settings from 'electron-settings';
-import Logger from '../../javascript/logger';
+import { remote } from "electron";
+import process from "process";
+import Card from "../Card/Card.vue";
+import CardItem from "../Card/CardItem.vue";
+import constants from "../../constants";
+import zipper from "zip-local";
+import { join } from "path";
+import settings from "electron-settings";
+import Logger from "../../javascript/logger";
 
-const SentryLogger = new Logger('Sentry');
+const SentryLogger = new Logger("Sentry");
 
 export default {
-  name: 'About',
+  name: "About",
   components: {
     Card,
     CardItem,
@@ -186,94 +186,95 @@ export default {
     credits: {
       main: [
         {
-          name: 'Asicalug',
-          link: 'https://github.com/Asicalug',
-          avatar: 'https://cdn.discordapp.com/avatars/1080643375960707092/b4e2a3f1e27d130f37ee96d1fe81a748.png?size=1024',
-          reason:'Image designer',
-          aka: 'gulacisA'
-        },
-        {
-          name: 'NotEvenJoking',
-          link: 'https://github.com/770grappenmaker',
-          avatar: 'https://avatars.githubusercontent.com/u/50543283',
-          reason: 'Main Solar Engine Developer',
-          aka: '770grappenmaker',
-        },
-        {
-          name: 'TBHGodPro',
-          link: 'https://github.com/TBHGodPro',
+          name: "Asicalug",
+          link: "https://github.com/Asicalug",
           avatar:
-            'https://cdn.discordapp.com/avatars/668116405765537808/84d5615892223cd66e512db4a6f44d53.webp?size=1280',
-          reason: 'Main Back-End Developer',
-          aka: 'Skull Emoji',
+            "https://cdn.discordapp.com/avatars/1080643375960707092/b4e2a3f1e27d130f37ee96d1fe81a748.png?size=1024",
+          reason: "Image designer",
+          aka: "gulacisA",
         },
         {
-          name: 'Naibuu',
-          link: 'https://github.com/Naibuu',
-          avatar: 'https://avatars.githubusercontent.com/u/81579850',
-          reason: 'Main Front-End Designer',
+          name: "NotEvenJoking",
+          link: "https://github.com/770grappenmaker",
+          avatar: "https://avatars.githubusercontent.com/u/50543283",
+          reason: "Main Solar Engine Developer",
+          aka: "770grappenmaker",
         },
         {
-          name: 'thororen',
-          link: 'https://github.com/thororen',
-          avatar: 'https://i.imgur.com/maRzwz2.jpg',
-          reason: 'Creator',
+          name: "TBHGodPro",
+          link: "https://github.com/TBHGodPro",
+          avatar:
+            "https://cdn.discordapp.com/avatars/668116405765537808/84d5615892223cd66e512db4a6f44d53.webp?size=1280",
+          reason: "Main Back-End Developer",
+          aka: "Skull Emoji",
+        },
+        {
+          name: "Naibuu",
+          link: "https://github.com/Naibuu",
+          avatar: "https://avatars.githubusercontent.com/u/81579850",
+          reason: "Main Front-End Designer",
+        },
+        {
+          name: "thororen",
+          link: "https://github.com/thororen",
+          avatar: "https://i.imgur.com/maRzwz2.jpg",
+          reason: "Creator",
         },
       ],
       others: [
         {
-          name: 'HypedDomi',
-          link: 'https://github.com/HypedDomi',
-          avatar: 'https://avatars.githubusercontent.com/u/50876016',
-          reason: 'Helped develop many features and gave ideas',
+          name: "HypedDomi",
+          link: "https://github.com/HypedDomi",
+          avatar: "https://avatars.githubusercontent.com/u/50876016",
+          reason: "Helped develop many features and gave ideas",
         },
         {
-          name: 'Leoo',
-          link: 'https://github.com/heyitsleo',
-          avatar: 'https://avatars.githubusercontent.com/u/111710350',
-          reason: 'Gave ideas for many features and helped fix bugs',
-          aka: "Skull's friend 💀"
+          name: "Leoo",
+          link: "https://github.com/heyitsleo",
+          avatar: "https://avatars.githubusercontent.com/u/111710350",
+          reason: "Gave ideas for many features and helped fix bugs",
+          aka: "Skull's friend 💀",
         },
         {
-          name: 'Waffles',
-          link: 'https://github.com/Waffles3438',
-          avatar: 'https://avatars.githubusercontent.com/u/96705793',
-          reason: 'Helped bug test',
+          name: "Waffles",
+          link: "https://github.com/Waffles3438",
+          avatar: "https://avatars.githubusercontent.com/u/96705793",
+          reason: "Helped bug test",
         },
         {
-          name: 'qualk',
-          link: 'https://github.com/qualk',
+          name: "qualk",
+          link: "https://github.com/qualk",
           avatar:
-            'https://cdn.discordapp.com/avatars/733480259810230342/25fb207dfc26829401a786cac8378c97.webp?size=80',
-          reason: 'solar twerk',
-          aka: '(TROPPUS ROF GNIP) klauq',
+            "https://cdn.discordapp.com/avatars/733480259810230342/25fb207dfc26829401a786cac8378c97.webp?size=80",
+          reason: "solar twerk",
+          aka: "(TROPPUS ROF GNIP) klauq",
         },
       ],
       translators: [
         {
-          name: 'HypedDomi',
-          link: 'https://github.com/HypedDomi',
-          avatar: 'https://avatars.githubusercontent.com/u/50876016',
+          name: "HypedDomi",
+          link: "https://github.com/HypedDomi",
+          avatar: "https://avatars.githubusercontent.com/u/50876016",
         },
         {
-          name: 'Negancy',
+          name: "Negancy",
           avatar:
-            'https://cdn.discordapp.com/avatars/545290605387841558/a16052ce9f1917c6394eb9bf447ac88d.webp?size=1280',
+            "https://cdn.discordapp.com/avatars/545290605387841558/a16052ce9f1917c6394eb9bf447ac88d.webp?size=1280",
         },
         {
-          name: 'Waffles',
-          link: 'https://github.com/Waffles3438',
-          avatar: 'https://avatars.githubusercontent.com/u/96705793',
+          name: "Waffles",
+          link: "https://github.com/Waffles3438",
+          avatar: "https://avatars.githubusercontent.com/u/96705793",
         },
         {
-          name: 'Kianna',
+          name: "Kianna",
           avatar:
-            'https://cdn.discordapp.com/avatars/851540510128341104/33df95f62f82ce6d44f4443ce25b907f.webp?size=1280',
+            "https://cdn.discordapp.com/avatars/851540510128341104/33df95f62f82ce6d44f4443ce25b907f.webp?size=1280",
         },
         {
           name: "It's Piev",
           avatar:
-            'https://cdn.discordapp.com/avatars/809094383219638283/1ab130e761d82ec35711c3fa85c96eca.webp?size=1280',
+            "https://cdn.discordapp.com/avatars/809094383219638283/1ab130e761d82ec35711c3fa85c96eca.webp?size=1280",
         },
       ],
     },
@@ -297,14 +298,14 @@ export default {
      */
     async downloadLogs() {
       return await new Promise((res, rej) =>
-        zipper.zip(join(constants.SOLARTWERK_DIR, 'logs'), (err, zip) => {
+        zipper.zip(join(constants.SOLARTWERK_DIR, "logs"), (err, zip) => {
           if (err) rej(err.stack);
           else
-            zip.save(join(constants.SOLARTWERK_DIR, 'logs.zip'), (err) => {
+            zip.save(join(constants.SOLARTWERK_DIR, "logs.zip"), (err) => {
               if (err) rej(err.stack);
               else {
                 remote.shell.showItemInFolder(
-                  constants.SOLARTWERK_DIR + '/logs.zip'
+                  constants.SOLARTWERK_DIR + "/logs.zip"
                 );
                 res(zip);
               }
@@ -317,14 +318,14 @@ export default {
      */
     async toggleSentry() {
       this.SentryEnabled = !this.SentryEnabled;
-      await settings.set('SentryEnabled', this.SentryEnabled);
+      await settings.set("SentryEnabled", this.SentryEnabled);
       SentryLogger.info(
-        `${this.SentryEnabled ? 'Enabled' : 'Disabled'} Sentry`
+        `${this.SentryEnabled ? "Enabled" : "Disabled"} Sentry`
       );
     },
   },
   async beforeCreate() {
-    this.SentryEnabled = await settings.get('SentryEnabled');
+    this.SentryEnabled = await settings.get("SentryEnabled");
   },
 };
 </script>

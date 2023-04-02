@@ -57,7 +57,7 @@
           <button class="post-button" @click="openLink(post.url)">
             <i :class="post.button?.icon ?? 'fa-solid fa-book'"></i
             ><span class="post-btn-text">{{
-              post.button ? post.button.text : 'Read more'
+              post.button ? post.button.text : "Read more"
             }}</span>
           </button>
         </div>
@@ -67,19 +67,19 @@
 </template>
 
 <script>
-import { remote } from 'electron';
-import axios from 'axios';
+import { remote } from "electron";
+import axios from "axios";
 
-import { cache } from '../../main';
-import Logger from '../../javascript/logger';
-import constants from '../../constants';
-import settings from 'electron-settings';
-import { checkAndLaunch } from '../../javascript/minecraft';
+import { cache } from "../../main";
+import Logger from "../../javascript/logger";
+import constants from "../../constants";
+import settings from "electron-settings";
+import { checkAndLaunch } from "../../javascript/minecraft";
 
-const logger = new Logger('home');
+const logger = new Logger("home");
 
 export default {
-  name: 'Home',
+  name: "Home",
 
   data: () => ({
     posts: [],
@@ -101,27 +101,27 @@ export default {
      */
     async fetchServer(server) {
       const placeHolderIcon =
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABzCAYAAABQOAp8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAALEkAACxJAdrDVSAAAAcVSURBVHhe7Z3/feQ0EMVzaYBQAXQAV8FxFRwdAB3QAdABJUAHlMBVACXcVQAVBPS8z/vxKZY8I41kydL3H2u89vx4mpXtTTZ59TAA/zk4FPHKweHleeT2kmDiAU0xPA18w12X5ZKdjpnj0IQrrwiXKsx64n2u2AiXKaj05G+5UiN0fw+AiQc0q8CQTzS7pttOxgxwqCL07nXu/nWbz26WnN5Xg+5WgOfn51+1k49JWuGuF7iXnm5H6CYUuQCa3dFV92qFdod/fHx8/JKmmpSJ1TbQ2XSR7NkToY3fUxM0nejZE7+lpVwsaTZBreCWYiN2yJ82L2CZmzXN3QRCYEBTRAmBmcaLj4IRC9AUQV9/0myKZjoTCnEoRjsRUvxcQnHcE8nf7qWvaIoolXMqTSSjnfyQiM4NPpz5B+McoUP5ROI207xaTk3CUjjfV47AR3lJc5CQk6cFp9wDQChAUwSEAjTv0JVa+BDO1eG1OhSPKaom1DL3FKp2n6tV/XFrSNAj4bQTsaKdkNT89kjNOYdqARME+dzpgYZ5gcRXqpgJeS6E4qX4S809heKXAAgAaIqAAI4Xk09XSRNUGuSFn1PQvMNaVBNas8ZinZZSREgoS19HpMTy+MGF/o3jT6hZh5QizrWFHhVZU7iUWFskcWvWc4TpJQCFAZoiJIWVKv4sUA+gKYLSmn+aaNIATE498YCmOS6d5n+jl/X/frNEvNHqfET2BKRMPIcqUgpPiZUSZyW1NlCrPp/kFQAJA5oS3uYkbFFsy6A+QFMEpyDrdxOTREVUDkVoCwtRI642xharOkGNWoFqBcBPvzSJISlA89JY16n1p22YFXEQ7cRzaE7pPDT+t/Ras/kngSWFGIG9yYamgGYUTbMAUQNInDLHISffqu5V55De0jih8/c4bACJs73E3P3CB5wLuMsEqQi94eu0COegeQf1A5rZZF8C9pJB4m73FzRVHTkiTp7gJ3zQzvE9zTtHTYCTOIyS5cRPInb8UcIajvLaoo2r8Q0s6pLG3IsVO1eSW/IK4Ds/KuLodQ2SwnpBo4tWQ8nxwQZw537N4Qu0k78iPW4UUvTwz8l9M8RWgL+4jeJu9v7gUERK0a2SI36ODpYaWtwEvuNQjEUBuZ1/Jq580x/r5mihboCehW+IN9wm41beHzmMcvRmC05m6MRtAxw5PyK3mVz4+xdBQmhjSGtKzT1Xsy3bHGJ+Y7lmXwJyyBXD1bX7W8OtkltvCU5tANCiKCVotc7TGwDkiBNb3kAJ4Z3LjxyKcMcn/5WS0gTFCwm3FTx0TApHExkjlkeqX0ufMV+p+Dmk5tvECgAsRULBK9ylhqcvuNRU7/gtlnWR18iJ42yCjkKJb4MXKC7arTGQS+q5GjRxcCyHJsTixmLFzmtmBVhJFe1IHCXf8tQXxOJsgRMOTZDG1aLuKD8R60JXcgu2zCsll9rxY/Fi5wdfCDkMOYslkEIs6RDWOfhIc7LKQ6NBLGbMj9klAEEAzWy0ImqPTwExAM1djl6XYqllDPN7gNpNgGMAzSqE4lnlUWvyQZGbQBQAaGYRE9VK8BQQG9BcyK15Ec1BswpFnwJYj3lBTvcnX/yzsGqCEjpJqPIYmFOcf67TG398IfoTwNrkNoH2eEuqNABAkYCmlLfcLuCraW7z3c1qi8Qm+CVBE1OCwf2CVqwSDvnf4seSnHM20pz943KJaROLVW0F8DkSwH89VmBLSPI8qr0mpzUAgBCA5pbX3C70Mvl7+PUF6j2NYDIh0UsWsMbcxsBXzJx5/5ZRL5TUaY/QfIFYLk01wB6xwlqnplYxnWJ5nHoJOKLnye+Fphugd3po4GYbYL7765DVAJgkQHNSCcpuorvJCsB8FrTfFbw60ITDLBZxCXeZYH4JcDec75jnAnercKft/rHlEbmpWG6VzXoM1CYWexzZovXbOtK6V6T1b/3GzonFr3oTiCS3cPfEQUkWuKsKpz4FsN4F7roksfqW4h00q3NqA4wK53yBu05jNsDgtNIA77mdVKaVBmjy/+qOQPDxIHR9kj56aCnltxVK1Cf1uT3OZ94DDE5WA6CzAM1JJSi7ie5BJ6ElJTVwbIkCW79Hx/aItL7tcRpSfQZfCDlMTVBDrJgeOVuzWPx5DzA4TTZAjXfM5MZcAQZnNkBhWl/Nmm2AeRmYTCaTyaQo+CuYl/rQZSIH91nzKWBwZgMMjuhRa14m+kP6GD1XgMGZDTA48ylgbN7PFWBwZgMMzrwEdI70bj9E1smzec4ntwHmJWBw5gowGP6K8YkxJ/T6+A0wLwGDMxtgcLLuASwZ6fLjL8NnMleAwZkNMDhZS5FbtX92m59u1qQ2FpeSuQIMzmyAwWnmbjSFFp4cWrqjT2GuAIMzG2Bwulu+Wv7AqMfLwVwBBmc2wODMBhiah4f/AddNto2HeO0fAAAAAElFTkSuQmCC';
+        "data:image/png;base64,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";
       let content;
       if (cache.has(server.ip)) {
         content = cache.get(server.ip);
         logger.debug(`Cache hit for ${server.ip}`);
       } else {
         const query = {
-          ip: server.ip.split(':')[0],
-          port: server.ip.split(':')[1],
+          ip: server.ip.split(":")[0],
+          port: server.ip.split(":")[1],
         };
         logger.debug(`Fetching ${server.ip} status...`);
         await axios
           .get(constants.links.SERVER_STATUS_ENDPOINT, { params: query })
           .then((response) => {
-            if (response.data.status === 'success')
+            if (response.data.status === "success")
               cache.set(server.ip, response.data);
             content = response.data;
             logger.debug(`Fetched ${server.ip} status`);
           });
       }
-      if (content.status === 'success') {
+      if (content.status === "success") {
         server.online = true;
         server.icon = content.favicon ?? placeHolderIcon;
       } else {
@@ -139,11 +139,11 @@ export default {
   async beforeMount() {
     this.starredServers = await Promise.all(
       (
-        await settings.get('starredServers')
+        await settings.get("starredServers")
       ).map((server) => this.fetchServer({ ip: server }))
     );
 
-    if (cache.has('blogPosts')) return (this.posts = cache.get('blogPosts'));
+    if (cache.has("blogPosts")) return (this.posts = cache.get("blogPosts"));
 
     await axios
       .get(`${constants.API_URL}/launcher/blogPosts`)
@@ -152,7 +152,7 @@ export default {
         this.posts = response.data;
       });
     await axios
-      .get('https://api.lunarclientprod.com/launcher/metadata')
+      .get("https://api.lunarclientprod.com/launcher/metadata")
       .then(({ data: { blogPosts } }) => {
         logger.info(`Fetched Lunar Client Blog Posts`, blogPosts);
         const lcPosts = blogPosts.map((blog) => {
@@ -165,7 +165,7 @@ export default {
           };
           if (blog.link) {
             post.url = blog.link;
-            post.button = { text: 'Read more', icon: 'fa fa-book' };
+            post.button = { text: "Read more", icon: "fa fa-book" };
           }
           return post;
         });
@@ -176,7 +176,7 @@ export default {
           });
         else this.posts = lcPosts.slice(0, 3);
       });
-    cache.set('blogPosts', this.posts);
+    cache.set("blogPosts", this.posts);
   },
 };
 </script>

@@ -1,18 +1,18 @@
-import { createStore } from 'vuex';
+import { createStore } from "vuex";
 
 const store = createStore({
   state: {
-    activeTab: 'Home',
+    activeTab: "Home",
     playContainerHeight: 300,
     isLaunching: false,
     launchingState: {
-      title: 'LAUNCH',
-      message: 'READY TO LAUNCH',
-      icon: 'fa-solid fa-gamepad',
+      title: "LAUNCH",
+      message: "READY TO LAUNCH",
+      icon: "fa-solid fa-gamepad",
     },
     isShowingTutorial: false,
     showModal: false,
-    errorMessage: '',
+    errorMessage: "",
   },
 
   getters: {

@@ -48,40 +48,40 @@
 </template>
 
 <script>
-import ShowTutorial from './Tutorial.vue';
-import { remote } from 'electron';
-import settings from 'electron-settings';
+import ShowTutorial from "./Tutorial.vue";
+import { remote } from "electron";
+import settings from "electron-settings";
 
 export default {
-  name: 'TitleBar',
+  name: "TitleBar",
 
   components: {
     ShowTutorial,
   },
 
   data: () => ({
-    theme: 'dark',
+    theme: "dark",
     showThemeSwapper: false,
 
     links: [
       {
-        name: 'Home',
+        name: "Home",
         active: false,
       },
       {
-        name: 'Servers',
+        name: "Servers",
         active: false,
       },
       {
-        name: 'Engine',
+        name: "Engine",
         active: false,
       },
       {
-        name: 'Settings',
+        name: "Settings",
         active: false,
       },
       {
-        name: 'About',
+        name: "About",
         active: false,
       },
     ],
@@ -101,75 +101,75 @@ export default {
      * @param {string} tabName The name of the tab to set as active
      */
     setActiveTab(tabName) {
-      this.$store.commit('setActiveTab', tabName);
+      this.$store.commit("setActiveTab", tabName);
       this.links.find((link) => link.active).active = false;
       this.links.find((link) => link.name === tabName).active = true;
 
-      if (tabName === 'Home') {
-        this.$store.commit('setPlayContainerHeight', 300);
-      } else this.$store.commit('setPlayContainerHeight', 135);
+      if (tabName === "Home") {
+        this.$store.commit("setPlayContainerHeight", 300);
+      } else this.$store.commit("setPlayContainerHeight", 135);
     },
 
     /**
      * Open the tutorial window
      */
     showTutorial() {
-      this.$store.commit('setTutorialState', true);
+      this.$store.commit("setTutorialState", true);
     },
 
     async toggleTheme() {
-      if (this.theme === 'dark') this.theme = 'light';
-      else this.theme = 'dark';
-      document.body.setAttribute('data-theme', this.theme);
-      await settings.set('theme', this.theme);
+      if (this.theme === "dark") this.theme = "light";
+      else this.theme = "dark";
+      document.body.setAttribute("data-theme", this.theme);
+      await settings.set("theme", this.theme);
     },
 
     async registerClick() {
       this.clickCount++;
       if (this.clickCount >= 10) {
-        await settings.set('themeSwapperEnabled', true);
-        if (this.theme === 'dark') this.toggleTheme();
+        await settings.set("themeSwapperEnabled", true);
+        if (this.theme === "dark") this.toggleTheme();
       }
     },
 
     runDevShortcut() {
-      if (!this.links.find((link) => link.name == 'Debug')) {
-        let keysDone = '';
-        let keysAll = 'devenable';
+      if (!this.links.find((link) => link.name == "Debug")) {
+        let keysDone = "";
+        let keysAll = "devenable";
         let last = 0;
         const listener = async (event) => {
-          if (Date.now() - last > 2000) keysDone = '';
+          if (Date.now() - last > 2000) keysDone = "";
           if (event.key == keysAll.charAt(keysDone.length))
             keysDone += event.key;
-          else keysDone = '';
+          else keysDone = "";
           if (keysDone.length == keysAll.length) {
-            if (!this.links.find((link) => link.name == 'Debug'))
-              this.links.push({ name: 'Debug', active: false });
-            await settings.set('DeveloperMode', true);
-            document.removeEventListener('keydown', listener);
+            if (!this.links.find((link) => link.name == "Debug"))
+              this.links.push({ name: "Debug", active: false });
+            await settings.set("DeveloperMode", true);
+            document.removeEventListener("keydown", listener);
           }
           last = Date.now();
         };
-        document.addEventListener('keydown', listener);
+        document.addEventListener("keydown", listener);
       }
     },
   },
 
   async beforeMount() {
     // Starts as ON if served and OFF if packaged
-    if (!(await settings.has('DeveloperMode')))
-      await settings.set('DeveloperMode', !remote.app.isPackaged);
-    if (await settings.get('DeveloperMode'))
-      this.links.push({ name: 'Debug', active: false });
+    if (!(await settings.has("DeveloperMode")))
+      await settings.set("DeveloperMode", !remote.app.isPackaged);
+    if (await settings.get("DeveloperMode"))
+      this.links.push({ name: "Debug", active: false });
 
     this.clickCount = 0;
-    this.showThemeSwapper = await settings.get('themeSwapperEnabled');
-    this.theme = this.showThemeSwapper ? await settings.get('theme') : 'dark';
-    document.body.setAttribute('data-theme', this.theme);
+    this.showThemeSwapper = await settings.get("themeSwapperEnabled");
+    this.theme = this.showThemeSwapper ? await settings.get("theme") : "dark";
+    document.body.setAttribute("data-theme", this.theme);
   },
 
   mounted() {
-    document.body.setAttribute('data-theme', this.theme);
+    document.body.setAttribute("data-theme", this.theme);
     // Set the active tab to the store's active tab
     this.links.find(
       (link) => link.name === this.$store.getters.getActiveTab
@@ -223,7 +223,7 @@ export default {
 
 #title {
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
   font-size: 1.85rem;
   font-weight: 500;

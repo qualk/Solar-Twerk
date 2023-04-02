@@ -15,9 +15,9 @@
 
 <script>
 export default {
-  name: 'CardItem',
+  name: "CardItem",
 
-  props: ['icon', 'title', 'subtitle', 'contentClass'],
+  props: ["icon", "title", "subtitle", "contentClass"],
 };
 </script>
 

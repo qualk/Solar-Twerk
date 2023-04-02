@@ -1,11 +1,11 @@
 //import axios from 'axios';
 //import { execSync } from 'child_process';
 //import { remote } from 'electron';
-import { app, autoUpdater } from 'electron';
+import { app, autoUpdater } from "electron";
 //import { unlink } from 'fs/promises';
 //import { join } from 'path';
 //import { platform } from 'process';
-import constants from '../constants';
+import constants from "../constants";
 //import { downloadAndSaveFile } from './downloader';
 //import Logger from './logger';
 
@@ -15,9 +15,11 @@ import constants from '../constants';
  * Checks for updates (for the launcher)
  */
 export async function checkForUpdates() {
-  const url = `${constants.LAUNCHER_URL}/update/${process.platform}/${app.getVersion()}`
-  autoUpdater.setFeedURL({ url })
-/*  if (platform !== 'win32') return;
+  const url = `${constants.LAUNCHER_URL}/update/${
+    process.platform
+  }/${app.getVersion()}`;
+  autoUpdater.setFeedURL({ url });
+  /*  if (platform !== 'win32') return;
 
   logger.info('Checking for updates...');
   const release = await axios

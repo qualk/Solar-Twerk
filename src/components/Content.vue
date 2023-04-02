@@ -9,19 +9,19 @@
 </template>
 
 <script>
-import Play from './Content/Play.vue';
-import Home from './Content/Home.vue';
-import Servers from './Content/Servers.vue';
-import Engine from './Content/Engine.vue';
-import Settings from './Content/Settings.vue';
-import About from './Content/About.vue';
-import ErrorModal from './Content/ErrorModal.vue';
-import Debug from './Content/Debug.vue';
+import Play from "./Content/Play.vue";
+import Home from "./Content/Home.vue";
+import Servers from "./Content/Servers.vue";
+import Engine from "./Content/Engine.vue";
+import Settings from "./Content/Settings.vue";
+import About from "./Content/About.vue";
+import ErrorModal from "./Content/ErrorModal.vue";
+import Debug from "./Content/Debug.vue";
 
-import SentryNotification from './SentryNotification';
+import SentryNotification from "./SentryNotification";
 
 export default {
-  name: 'Content',
+  name: "Content",
   components: {
     Play,
     Home,

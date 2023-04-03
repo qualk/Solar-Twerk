@@ -31,17 +31,17 @@
 </template>
 
 <script>
-import Card from '../Card/Card.vue';
+import Card from "../Card/Card.vue";
 
-import { remote } from 'electron';
-import settings from 'electron-settings';
-import { readFile, writeFile } from 'fs/promises';
-import Logger from '../../javascript/logger';
+import { remote } from "electron";
+import settings from "electron-settings";
+import { readFile, writeFile } from "fs/promises";
+import Logger from "../../javascript/logger";
 
-const logger = new Logger('Debug Mode');
+const logger = new Logger("Debug Mode");
 
 export default {
-  name: 'Debug',
+  name: "Debug",
   data: () => ({
     settingsFile: settings.file(),
   }),
@@ -53,23 +53,23 @@ export default {
      * Clear the settings file
      */
     async clearSettings() {
-      const old = JSON.parse(await readFile(this.settingsFile, 'utf-8'));
+      const old = JSON.parse(await readFile(this.settingsFile, "utf-8"));
       let data = {
         servers: old.servers,
         ram: old.ram,
       };
-      await writeFile(this.settingsFile, JSON.stringify(data), 'utf-8');
-      logger.info('Cleared Settings and set to', data);
+      await writeFile(this.settingsFile, JSON.stringify(data), "utf-8");
+      logger.info("Cleared Settings and set to", data);
     },
     async openFile(path) {
       await remote.shell.openPath(path);
     },
 
     async setSettingsItem(name, value) {
-      const data = JSON.parse(await readFile(this.settingsFile, 'utf-8'));
+      const data = JSON.parse(await readFile(this.settingsFile, "utf-8"));
       if (value !== undefined) data[name] = value;
       else delete data[name];
-      await writeFile(this.settingsFile, JSON.stringify(data), 'utf-8');
+      await writeFile(this.settingsFile, JSON.stringify(data), "utf-8");
       logger.info(`Deleted "${name}" Property of Settings`);
     },
   },

@@ -162,7 +162,7 @@
           'customization-toggle-btn-enabled': item.enabled,
         }"
       >
-        {{ item.enabled ? 'ENABLED' : 'DISABLED' }}
+        {{ item.enabled ? "ENABLED" : "DISABLED" }}
       </button>
     </div>
     <div
@@ -185,11 +185,11 @@
 </template>
 
 <script>
-import { readFile, writeFile } from 'fs/promises';
-import { join } from 'path';
-import constants from '../../constants';
-import { updateActivity } from '../../javascript/discord';
-import { downloadAndSaveFile } from '../../javascript/downloader';
+import { readFile, writeFile } from "fs/promises";
+import { join } from "path";
+import constants from "../../constants";
+import { updateActivity } from "../../javascript/discord";
+import { downloadAndSaveFile } from "../../javascript/downloader";
 // import Logger from '../../javascript/logger';
 
 // const logger = new Logger('customize');
@@ -197,7 +197,7 @@ import { downloadAndSaveFile } from '../../javascript/downloader';
 /** @typedef {{options: {[name: string]: {value?: any; name: string; type: "STRING" | "BOOLEAN" | "INTEGER" | "FLOAT"; displayName: string; description: string}}; displayName: string; description: string; enabled?: boolean; name: string;}} Module */
 
 export default {
-  name: 'Engine',
+  name: "Engine",
 
   data: () => ({
     /** @type {{[name: string]: Module}} */
@@ -217,9 +217,9 @@ export default {
     },
     inDepth: {
       open: false,
-      name: '',
-      displayName: '',
-      description: '',
+      name: "",
+      displayName: "",
+      description: "",
     },
   }),
 
@@ -227,9 +227,9 @@ export default {
     toggleOptionInDepth(name) {
       if (this.inDepth.open && !(name && name !== this.inDepth.name)) {
         this.inDepth.open = false;
-        this.inDepth.name = '';
-        this.inDepth.displayName = '';
-        this.inDepth.description = '';
+        this.inDepth.name = "";
+        this.inDepth.displayName = "";
+        this.inDepth.description = "";
       } else {
         this.inDepth.open = true;
         const option = this.menu?.module?.options?.[name];
@@ -255,16 +255,16 @@ export default {
       this.highlightedCommand = null;
       if (this.inDepth.open) this.toggleOptionInDepth();
       this.menu.open = !this.menu.open;
-      if (!this.menu.open && this.menu.type === 'module') this.updateModule();
+      if (!this.menu.open && this.menu.type === "module") this.updateModule();
       if (this.menu.open) {
         if (module) {
           this.menu.module = this.modules[module];
-          this.menu.type = 'module';
+          this.menu.type = "module";
         } else {
           this.menu.module = {
             options: {},
           };
-          this.menu.type = 'customCommands';
+          this.menu.type = "customCommands";
         }
       } else {
         this.menu.module = {
@@ -295,22 +295,22 @@ export default {
           commands: this.customCommands,
         },
       };
-      console.log('Saving Settings', data);
+      console.log("Saving Settings", data);
       await writeFile(
         join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG),
         JSON.stringify(data),
-        'utf-8'
+        "utf-8"
       );
     },
 
     addCommand() {
-      let commandName = 'test';
+      let commandName = "test";
       let num = 1;
       while (this.customCommands[commandName]) {
-        commandName = 'test' + num;
+        commandName = "test" + num;
         num += 1;
       }
-      this.customCommands[commandName] = '/ac gg';
+      this.customCommands[commandName] = "/ac gg";
     },
 
     removeCommand() {
@@ -320,7 +320,7 @@ export default {
     },
 
     changeCommandName(oldName, newName) {
-      newName = newName.replace(/\//g, '');
+      newName = newName.replace(/\//g, "");
       if (this.customCommands[newName]) return;
       const value = this.customCommands[oldName];
       delete this.customCommands[oldName];
@@ -334,24 +334,24 @@ export default {
   },
 
   async beforeMount() {
-    updateActivity('In the launcher', 'Customizing the game');
+    updateActivity("In the launcher", "Customizing the game");
     this.modules = JSON.parse(
       await readFile(
         join(constants.SOLARTWERK_DIR, constants.ENGINE.METADATA),
-        'utf-8'
+        "utf-8"
       ).catch(
         async () =>
           await downloadAndSaveFile(
             constants.ENGINE.METADATA_URL,
             join(constants.SOLARTWERK_DIR, constants.ENGINE.METADATA),
-            'text',
-            '',
-            '',
+            "text",
+            "",
+            "",
             true
           ).then(() =>
             readFile(
               join(constants.SOLARTWERK_DIR, constants.ENGINE.METADATA),
-              'utf-8'
+              "utf-8"
             )
           )
       )
@@ -359,24 +359,21 @@ export default {
     const example = JSON.parse(
       await readFile(
         join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG_EXAMPLE),
-        'utf-8'
+        "utf-8"
       ).catch(
         async () =>
           await downloadAndSaveFile(
             constants.ENGINE.CONFIG_EXAMPLE_URL,
             join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG_EXAMPLE),
-            'text',
-            '',
-            '',
+            "text",
+            "",
+            "",
             true
           )
             .then(() =>
               readFile(
-                join(
-                  constants.SOLARTWERK_DIR,
-                  constants.ENGINE.CONFIG_EXAMPLE
-                ),
-                'utf-8'
+                join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG_EXAMPLE),
+                "utf-8"
               )
             )
             .catch(() => ({}))
@@ -385,12 +382,12 @@ export default {
     const data = JSON.parse(
       await readFile(
         join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG),
-        'utf-8'
+        "utf-8"
       ).catch(
         async () =>
           await writeFile(
             join(constants.SOLARTWERK_DIR, constants.ENGINE.CONFIG),
-            '{}'
+            "{}"
           )
             .then(() => ({}))
             .catch(() => ({}))
@@ -400,7 +397,7 @@ export default {
       if (!this.modules[module]) continue;
       this.modules[module].enabled = data.modules[module].isEnabled ?? false;
       for (const option in data.modules[module]) {
-        if (option === 'isEnabled') continue;
+        if (option === "isEnabled") continue;
         if (!this.modules[module].options[option]) continue;
         this.modules[module].options[option].value =
           data.modules[module][option];
@@ -411,7 +408,7 @@ export default {
         continue;
       this.modules[module].enabled = example.modules[module].isEnabled ?? false;
       for (const option in example.modules[module]) {
-        if (option === 'isEnabled') continue;
+        if (option === "isEnabled") continue;
         if (!this.modules[module].options[option]) continue;
         this.modules[module].options[option].value =
           example.modules[module][option];
@@ -427,7 +424,7 @@ export default {
   },
 
   async beforeUnmount() {
-    if (!this.$store.getters.isLaunching) updateActivity('In the launcher');
+    if (!this.$store.getters.isLaunching) updateActivity("In the launcher");
     await this.saveModules();
   },
 };
@@ -479,7 +476,7 @@ export default {
       rgba(0, 0, 0, 0),
       var(--color-background)
     ),
-    url('../../assets/cards-backgrounds/about.png');
+    url("../../assets/cards-backgrounds/about.png");
   background-size: cover;
   background-position: center;
 }
@@ -579,7 +576,7 @@ export default {
 .options-toggle::before {
   position: absolute;
   padding: 15px 44px;
-  content: '';
+  content: "";
   background-color: var(--color-darker-gray);
   border-radius: 5px;
 }
@@ -595,7 +592,7 @@ export default {
 .options-toggle-enabled::after {
   position: relative;
   padding: 2px 10px;
-  content: 'ON';
+  content: "ON";
   background: var(--color-green);
   box-shadow: 0 0 0 2px var(--color-green-outline);
   border-radius: 2.5px;
@@ -609,7 +606,7 @@ export default {
 .options-toggle-disabled::after {
   position: relative;
   padding: 2px 10px;
-  content: 'OFF';
+  content: "OFF";
   background: var(--color-gray);
   box-shadow: 0 0 0 2px var(--color-gray-outline);
   border-radius: 2.5px;

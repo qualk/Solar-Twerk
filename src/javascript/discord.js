@@ -1,14 +1,14 @@
-import { Client } from 'discord-rpc';
-import { remote } from 'electron';
-import Logger from './logger';
-const logger = new Logger('discord');
+import { Client } from "discord-rpc";
+import { remote } from "electron";
+import Logger from "./logger";
+const logger = new Logger("discord");
 
-const clientId = '1091815954901631079';
+const clientId = "1091815954901631079";
 
-export const client = new Client({ transport: 'ipc' });
+export const client = new Client({ transport: "ipc" });
 
-client.on('ready', async () => {
-  logger.info('Discord RPC ready');
+client.on("ready", async () => {
+  logger.info("Discord RPC ready");
 });
 
 client.isConnected = false;
@@ -23,8 +23,8 @@ export function login() {
       if (client) {
         logger.info(`Authed for user ${client.user.username}`);
         client.isConnected = true;
-        await updateActivity('In the launcher');
-      } else logger.error('Failed to login to Discord RPC');
+        await updateActivity("In the launcher");
+      } else logger.error("Failed to login to Discord RPC");
     })
     .catch((error) => {
       logger.error(error);
@@ -50,28 +50,28 @@ export async function updateActivity(
   mode = null
 ) {
   if (!client.isConnected) return;
-  logger.info('Updating Discord Activity');
+  logger.info("Updating Discord Activity");
   const activity = {
     details,
     state,
-    largeImageKey: 'logo',
+    largeImageKey: "logo",
     largeImageText: `Solar Twerk ${remote.app.getVersion()}`,
     buttons: [
       {
-        label: '⬇️⠀Download Solar Twerk',
-        url: 'https://github.com/qualk/Solar-Twerk',
+        label: "⬇️⠀Download Solar Twerk",
+        url: "https://github.com/qualk/Solar-Twerk",
       },
     ],
   };
 
   if (Math.random() > 0.98)
     activity.buttons.push({
-      label: 'Not a Rickroll (Source: Trust Me Bro)',
-      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      label: "Not a Rickroll (Source: Trust Me Bro)",
+      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     });
 
   if (timestamp && mode) {
-    if (mode === 'remaining') {
+    if (mode === "remaining") {
       activity.startTimestamp = new Date();
       activity.endTimestamp = timestamp;
     } else {

@@ -5,26 +5,26 @@
 </template>
 
 <script>
-import TitleBar from './components/TitleBar.vue';
-import Content from './components/Content.vue';
-import Footer from './components/Footer.vue';
+import TitleBar from "./components/TitleBar.vue";
+import Content from "./components/Content.vue";
+import Footer from "./components/Footer.vue";
 
-import { checkDirectory } from './javascript/directories';
-import constants from './constants';
-import { login } from './javascript/discord';
-import setupSettings from './javascript/settings';
-import { clearLogs } from './javascript/logger';
-import { checkForUpdates } from './javascript/updater';
-import { remote } from 'electron';
-import { join } from 'path';
-import settings from 'electron-settings';
-import { verifyEngine } from './javascript/engine';
-import { doesLunarExists } from './javascript/lunar';
+import { checkDirectory } from "./javascript/directories";
+import constants from "./constants";
+import { login } from "./javascript/discord";
+import setupSettings from "./javascript/settings";
+import { clearLogs } from "./javascript/logger";
+import { checkForUpdates } from "./javascript/updater";
+import { remote } from "electron";
+import { join } from "path";
+import settings from "electron-settings";
+import { verifyEngine } from "./javascript/engine";
+import { doesLunarExists } from "./javascript/lunar";
 
-import './assets/global.css';
+import "./assets/global.css";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     TitleBar,
@@ -42,10 +42,10 @@ export default {
     // Setup emberclient folder
     const directories = [
       [[]],
-      [['emberclient'], ['jre']],
+      [["emberclient"], ["jre"]],
       [
-        ['emberclient', 'logs'],
-        ['emberclient', 'jres'],
+        ["emberclient", "logs"],
+        ["emberclient", "jres"],
       ],
     ];
 
@@ -65,11 +65,11 @@ export default {
 
     if (!navigator.onLine) {
       remote.dialog.showMessageBoxSync({
-        type: 'error',
-        title: 'No Internet Connection',
+        type: "error",
+        title: "No Internet Connection",
         message:
-          'You are not connected to the internet. Please connect and try again.',
-        buttons: ['OK'],
+          "You are not connected to the internet. Please connect and try again.",
+        buttons: ["OK"],
         defaultId: 0,
       });
       remote.app.quit();
@@ -84,22 +84,22 @@ export default {
     // Discord RPC
     login();
 
-    if (await settings.get('shownTutorial'))
-      this.$store.commit('setTutorialState', false);
-    else this.$store.commit('setTutorialState', true);
+    if (await settings.get("shownTutorial"))
+      this.$store.commit("setTutorialState", false);
+    else this.$store.commit("setTutorialState", true);
 
     setTimeout(
       async () => {
-        document.getElementById('loader-container').remove();
+        document.getElementById("loader-container").remove();
         if (doesLunarExists()) {
-          await settings.set('LCInstalled', true);
-        } else if (await settings.get('LCInstalled')) {
-          await settings.set('LCInstalled', false);
+          await settings.set("LCInstalled", true);
+        } else if (await settings.get("LCInstalled")) {
+          await settings.set("LCInstalled", false);
           this.$store.commit(
-            'setErrorMessage',
-            'It looks like you dont have Lunar Client installed. \nYou need Lunar installed in order to use Solar Twerk.\n\nPlease download Lunar from https://lunarclient.com/download\n\nIf you do have Lunar installed, please ignore this message and click the CLOSE button below.'
+            "setErrorMessage",
+            "It looks like you dont have Lunar Client installed. \nYou need Lunar installed in order to use Solar Twerk.\n\nPlease download Lunar from https://lunarclient.com/download\n\nIf you do have Lunar installed, please ignore this message and click the CLOSE button below."
           );
-          this.$store.commit('setErrorModal', true);
+          this.$store.commit("setErrorModal", true);
         }
       },
       // Give it an extra 50ms to load children
@@ -117,7 +117,7 @@ export default {
   -webkit-user-select: none;
   padding: 0;
   margin: 0;
-  font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Roboto, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {

@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'Modal',
+  name: "Modal",
   methods: {
     copyToClipboard(text) {
       navigator.clipboard.writeText(text);

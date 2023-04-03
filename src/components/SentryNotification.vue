@@ -15,18 +15,18 @@
 </template>
 
 <script>
-import settings from 'electron-settings';
-import Logger from '../javascript/logger';
+import settings from "electron-settings";
+import Logger from "../javascript/logger";
 
-const logger = new Logger('Sentry');
+const logger = new Logger("Sentry");
 
 export default {
-  name: 'SentryNotification',
+  name: "SentryNotification",
   data: () => ({
     previouslyShown: true,
   }),
   async beforeMount() {
-    this.previouslyShown = await settings.has('SentryEnabled');
+    this.previouslyShown = await settings.has("SentryEnabled");
   },
   methods: {
     /**
@@ -34,9 +34,9 @@ export default {
      * @param {boolean} enabled Enabled or not
      */
     async setEnabled(enabled) {
-      await settings.set('SentryEnabled', enabled);
+      await settings.set("SentryEnabled", enabled);
       this.previouslyShown = true;
-      logger.info(`${enabled ? 'Enabled' : 'Disabled'} Sentry`);
+      logger.info(`${enabled ? "Enabled" : "Disabled"} Sentry`);
     },
   },
 };

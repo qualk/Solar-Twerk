@@ -1,8 +1,8 @@
-import { captureException } from '@sentry/vue';
-import { createWriteStream } from 'fs';
-import { appendFile, mkdir, readFile, stat, writeFile } from 'fs/promises';
-import { join } from 'path';
-import constants from '../constants';
+import { captureException } from "@sentry/vue";
+import { createWriteStream } from "fs";
+import { appendFile, mkdir, readFile, stat, writeFile } from "fs/promises";
+import { join } from "path";
+import constants from "../constants";
 
 /**
  * Log system used to log messages to the console and to the log file
@@ -16,25 +16,25 @@ export default class Logger {
   debug(...args) {
     const x = `[${this.name}]`;
     this.logger.debug(x, ...args);
-    this.writeLog(`[DEBUG] ${x} ${[...args].join(' ')}`);
+    this.writeLog(`[DEBUG] ${x} ${[...args].join(" ")}`);
   }
 
   info(...args) {
     const x = `[${this.name}]`;
     this.logger.info(x, ...args);
-    this.writeLog(`[INFO] ${x} ${[...args].join(' ')}`);
+    this.writeLog(`[INFO] ${x} ${[...args].join(" ")}`);
   }
 
   warn(...args) {
     const x = `[${this.name}]`;
     this.logger.warn(x, ...args);
-    this.writeLog(`[WARN] ${x} ${[...args].join(' ')}`);
+    this.writeLog(`[WARN] ${x} ${[...args].join(" ")}`);
   }
 
   error(...args) {
     const x = `[${this.name}]`;
     this.logger.error(x, ...args);
-    this.writeLog(`[ERROR] ${x} ${[...args].join(' ')}`);
+    this.writeLog(`[ERROR] ${x} ${[...args].join(" ")}`);
   }
   throw(problem, err) {
     const error = err instanceof Error ? err : new Error(err.trim());
@@ -48,17 +48,17 @@ export default class Logger {
    */
   async writeLog(log) {
     await appendFile(
-      join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
+      join(constants.SOLARTWERK_DIR, "logs", "launcher-latest.log"),
       `${log}\n`
     ).catch(async (reason) => {
       if (
-        (typeof reason === 'string' ? reason : reason.toString()).includes(
-          'no such file or directory'
+        (typeof reason === "string" ? reason : reason.toString()).includes(
+          "no such file or directory"
         )
       ) {
         await clearLogs();
         await appendFile(
-          join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
+          join(constants.SOLARTWERK_DIR, "logs", "launcher-latest.log"),
           `${log}\n`
         );
       } else throw new Error(reason);
@@ -69,41 +69,41 @@ export default class Logger {
 export async function createMinecraftLogger(version) {
   const logFile = join(
     constants.SOLARTWERK_DIR,
-    'logs',
+    "logs",
     `${version}-latest.log`
   );
 
   await writeFile(
     logFile,
-    '' // Clear the file and creates it if it doesn't exist
+    "" // Clear the file and creates it if it doesn't exist
   );
 
-  return createWriteStream(logFile, { encoding: 'utf8' });
+  return createWriteStream(logFile, { encoding: "utf8" });
 }
 
 /**
  * Clears the log file
  */
 export async function clearLogs() {
-  await stat(join(constants.SOLARTWERK_DIR, 'logs')).catch(() =>
-    mkdir(join(constants.SOLARTWERK_DIR, 'logs'), {
+  await stat(join(constants.SOLARTWERK_DIR, "logs")).catch(() =>
+    mkdir(join(constants.SOLARTWERK_DIR, "logs"), {
       recursive: true,
     })
   );
 
   const oldLog = await readFile(
-    join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
-    'utf-8'
-  ).catch(() => '');
+    join(constants.SOLARTWERK_DIR, "logs", "launcher-latest.log"),
+    "utf-8"
+  ).catch(() => "");
 
   await writeFile(
-    join(constants.SOLARTWERK_DIR, 'logs', 'launcher-latest.log'),
-    ''
+    join(constants.SOLARTWERK_DIR, "logs", "launcher-latest.log"),
+    ""
   );
 
   await writeFile(
-    join(constants.SOLARTWERK_DIR, 'logs', 'launcher-old.log'),
+    join(constants.SOLARTWERK_DIR, "logs", "launcher-old.log"),
     oldLog,
-    'utf-8'
+    "utf-8"
   );
 }

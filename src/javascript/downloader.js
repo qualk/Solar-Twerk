@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { createHash } from 'crypto';
-import { createWriteStream, existsSync } from 'fs';
+import axios from "axios";
+import { createHash } from "crypto";
+import { createWriteStream, existsSync } from "fs";
 // import { DownloaderHelper } from 'node-downloader-helper';
 
-import { mkdir, readFile, writeFile } from 'fs/promises';
-import Logger from './logger';
-const logger = new Logger('downloader');
+import { mkdir, readFile, writeFile } from "fs/promises";
+import Logger from "./logger";
+const logger = new Logger("downloader");
 
 /**
  * Downloads and saves a file from a URL to the given path
@@ -22,7 +22,7 @@ export async function downloadAndSaveFile(
   path,
   fileType,
   hash = null,
-  algorithm = 'sha1',
+  algorithm = "sha1",
   logging = true,
   skipFolderCheck = false
 ) {
@@ -36,21 +36,21 @@ export async function downloadAndSaveFile(
   }
 
   if (!skipFolderCheck) {
-    const folderPath = path.includes('\\')
-      ? path.substring(0, path.lastIndexOf('\\'))
-      : path.substring(0, path.lastIndexOf('/'));
+    const folderPath = path.includes("\\")
+      ? path.substring(0, path.lastIndexOf("\\"))
+      : path.substring(0, path.lastIndexOf("/"));
     await mkdir(folderPath, {
       recursive: true,
     });
   }
 
-  if (fileType === 'text') {
+  if (fileType === "text") {
     await writeFile(
       path,
-      typeof response.data === 'object'
+      typeof response.data === "object"
         ? JSON.stringify(response.data)
         : response.data,
-      'utf8'
+      "utf8"
     );
     if (logging) logger.debug(`Saved to ${path}`);
     if (hash) {
@@ -60,11 +60,11 @@ export async function downloadAndSaveFile(
     }
   }
 
-  if (fileType === 'blob') {
+  if (fileType === "blob") {
     const output = createWriteStream(path);
     const ws = new WritableStream(output);
 
-    let blob = new Blob([response.data], { type: 'application/zip' });
+    let blob = new Blob([response.data], { type: "application/zip" });
 
     /** @type {ReadableStream} */
     const stream = blob.stream();
@@ -94,7 +94,7 @@ export async function checkHash(path, hash, algorithm, logging = true) {
   const fileBuffer = await readFile(path);
   const hashSum = createHash(algorithm);
   hashSum.update(fileBuffer);
-  const fileHash = hashSum.digest('hex');
+  const fileHash = hashSum.digest("hex");
   if (fileHash !== hash) {
     if (logging)
       logger.error(

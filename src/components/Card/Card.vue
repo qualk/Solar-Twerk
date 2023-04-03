@@ -20,8 +20,8 @@
 
 <script>
 export default {
-  name: 'Card',
-  props: ['icon', 'title', 'subtitle', 'background', 'contentClass'],
+  name: "Card",
+  props: ["icon", "title", "subtitle", "background", "contentClass"],
 };
 </script>
 

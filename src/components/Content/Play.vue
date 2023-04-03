@@ -198,26 +198,26 @@
 </template>
 
 <script>
-import settings from 'electron-settings';
-import { checkAndLaunch } from '../../javascript/minecraft';
-import Logger from '../../javascript/logger';
-import { updateActivity } from '../../javascript/discord';
-import constants from '../../constants';
-import { platform, release, arch as osArch } from 'os';
-import { cache } from '../../main';
+import settings from "electron-settings";
+import { checkAndLaunch } from "../../javascript/minecraft";
+import Logger from "../../javascript/logger";
+import { updateActivity } from "../../javascript/discord";
+import constants from "../../constants";
+import { platform, release, arch as osArch } from "os";
+import { cache } from "../../main";
 
-const logger = new Logger('play');
+const logger = new Logger("play");
 
 export let availableVersions = [];
 
 export default {
-  name: 'Play',
+  name: "Play",
   data: () => ({
     show: false,
     x: 0,
     y: 0,
-    moduleName: 'Lunar',
-    moduleDescription: 'Base Lunar Client with its own mods.',
+    moduleName: "Lunar",
+    moduleDescription: "Base Lunar Client with its own mods.",
     moduleCredits: false,
     isSelectingVersion: false,
     isLaunching: false,
@@ -225,9 +225,9 @@ export default {
     selectedSubversion: {},
     currentIndex: 0,
     /** @type {"lunar-noOF" | "lunar" | "neu" | "sodium"} */
-    selectedModule: 'lunar',
+    selectedModule: "lunar",
     availableVersions: [],
-    mainBackgroundURL: '',
+    mainBackgroundURL: "",
   }),
 
   methods: {
@@ -259,9 +259,9 @@ export default {
      */
 
     async closeVersionSelection(event) {
-      if (event.key === 'Escape') {
-        await settings.set('version', this.selectedSubversion.id);
-        await settings.set('module', this.selectedModule);
+      if (event.key === "Escape") {
+        await settings.set("version", this.selectedSubversion.id);
+        await settings.set("module", this.selectedModule);
         await this.updateLaunchButton();
         await this.toggleSelectingMenu();
         this.isSelectingVersion = false;
@@ -291,8 +291,8 @@ export default {
      */
     async launchGame() {
       await checkAndLaunch().catch((error) => {
-        logger.throw('Failed to Launch Game', error);
-        updateActivity('In the launcher');
+        logger.throw("Failed to Launch Game", error);
+        updateActivity("In the launcher");
       });
     },
     /**
@@ -306,12 +306,12 @@ export default {
      * Update the button title, message and icon
      */
     async updateLaunchButton() {
-      const version = await settings.get('version');
+      const version = await settings.get("version");
       if (!version) return setTimeout(() => this.updateLaunchButton(), 150);
-      this.$store.commit('setLaunchingState', {
+      this.$store.commit("setLaunchingState", {
         title: `LAUNCH ${version}`,
-        message: 'READY TO LAUNCH',
-        icon: 'fa-solid fa-gamepad',
+        message: "READY TO LAUNCH",
+        icon: "fa-solid fa-gamepad",
       });
     },
     /**
@@ -319,20 +319,20 @@ export default {
      * @param {string} version The version
      */
     async updateSelectedVersion(version) {
-      if (!version) version = await settings.get('version');
+      if (!version) version = await settings.get("version");
       this.selectedVersion =
         this.availableVersions.find(
           (i) =>
             i.id === version || i.subversions.map((e) => e.id).includes(version)
         ) ?? {};
-      await this.updateSelectedSubversion('');
+      await this.updateSelectedSubversion("");
     },
     /**
      * Update the selected subversion
      * @param {string} version The subversion
      */
     async updateSelectedSubversion(version) {
-      if (!version) version = await settings.get('version');
+      if (!version) version = await settings.get("version");
       this.selectedSubversion =
         this.selectedVersion.subversions.find((i) => i.id === version) ??
         this.selectedVersion.subversions.find((i) => i.default);
@@ -356,16 +356,16 @@ export default {
      * Change the Version Module currently being used
      * @param {"lunar" | "neu" | "sodium"} module
      */
-    setModule(module = 'lunar') {
+    setModule(module = "lunar") {
       this.selectedModule = module;
     },
     async revertChanges() {
-      this.setModule(await settings.get('module'));
+      this.setModule(await settings.get("module"));
       await this.toggleSelectingMenu();
     },
     async saveChanges() {
-      await settings.set('version', this.selectedSubversion.id);
-      await settings.set('module', this.selectedModule);
+      await settings.set("version", this.selectedSubversion.id);
+      await settings.set("module", this.selectedModule);
       await this.updateLaunchButton();
       await this.toggleSelectingMenu();
       console.log('[Version Selection] Menu closed using "Save" button.');
@@ -386,7 +386,7 @@ export default {
     setTimeout(async () => {
       await this.updateLaunchButton();
       await this.updateSelectedVersion();
-      this.setModule(await settings.get('module'));
+      this.setModule(await settings.get("module"));
       this.updateMainBackground();
     }, 150);
   },
@@ -399,23 +399,23 @@ export default {
       }
     );
     let data;
-    if (cache.has('lc_launcher_metadata'))
-      data = cache.get('lc_launcher_metadata');
+    if (cache.has("lc_launcher_metadata"))
+      data = cache.get("lc_launcher_metadata");
     else {
       data = await fetch(
         constants.links.LC_LAUNCHER_METADATA_ENDPOINT +
-          '?' +
+          "?" +
           new URLSearchParams({
             os: platform(),
             os_release: release(),
             arch: osArch(),
-            branch: 'master',
+            branch: "master",
             branch_changed: false,
             private: false,
             launcher_version: constants.LC_LAUNCHER_VERSION,
           }).toString()
       ).then((res) => res.json());
-      cache.set('lc_launcher_metadata', data);
+      cache.set("lc_launcher_metadata", data);
     }
     this.availableVersions = data.versions;
   },
@@ -904,7 +904,7 @@ export default {
 
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 46px;
     height: 46px;
     transform: translate(-4.5px, -22.5px) scale(0.85);

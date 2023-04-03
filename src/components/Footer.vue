@@ -8,7 +8,7 @@
       />
       <h4 id="solartwerk-text" class="footer-text">
         Solar Twerk • {{ version }} • {{ os }} •
-        {{ served ? 'Development (Served)' : 'Production' }}
+        {{ served ? "Development (Served)" : "Production" }}
       </h4>
     </div>
     <div id="links-container">
@@ -30,38 +30,38 @@
 </template>
 
 <script>
-import { remote } from 'electron';
-import { platform } from 'process';
-import constants from '../constants';
+import { remote } from "electron";
+import { platform } from "process";
+import constants from "../constants";
 
 export default {
-  name: 'Footer',
+  name: "Footer",
 
   data: () => ({
     version: remote.app.getVersion(),
     os:
-      platform === 'win32'
-        ? 'Windows'
-        : platform === 'darwin'
-        ? 'MacOS'
-        : platform === 'linux'
-        ? 'Linux'
+      platform === "win32"
+        ? "Windows"
+        : platform === "darwin"
+        ? "MacOS"
+        : platform === "linux"
+        ? "Linux"
         : `Unknown (${platform})`,
     links: [
       {
-        icon: 'fa-brands fa-github',
+        icon: "fa-brands fa-github",
         url: constants.links.GITHUB,
       },
       {
-        icon: 'fa-solid fa-comments',
+        icon: "fa-solid fa-comments",
         url: constants.links.GH_DISCUSSIONS,
       },
       {
-        icon: 'fa-brands fa-youtube',
+        icon: "fa-brands fa-youtube",
         url: constants.links.YOUTUBE,
       },
       {
-        icon: 'fa-solid fa-globe',
+        icon: "fa-solid fa-globe",
         url: constants.links.WEBSITE,
       },
     ],
